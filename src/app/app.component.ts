@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from "@ionic/storage";
 
-import { HomePage } from '../pages/home/home';
 import { TodayPage } from '../pages/today/today';
 import { NasaData } from "./model/data.model";
 

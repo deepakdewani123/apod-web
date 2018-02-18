@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { normalizeURL, ToastController } from "ionic-angular";
-import { Http } from "@angular/http";
+import { ToastController } from "ionic-angular";
+
 import "rxjs/add/operator/map";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Storage } from "@ionic/storage";
@@ -20,7 +20,7 @@ export class DataService {
   baseURL: string;
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private storage: Storage,
     private toastCtrl: ToastController
   ) {
@@ -32,12 +32,9 @@ export class DataService {
     let url: string;
     url = this.baseURL + "api_key=FvuaAkgkbQNeHku21L2At5gpBmEm4hENxkNNNokg";
 
-    return this.http.get(url).map(
+    return this.http.get<DataResponse>(url).map(
       data => {
-        // console.log(data.hdurl);
-
-        // console.log(data);
-        return data.json();
+        return data;
       },
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {

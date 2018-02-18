@@ -1,8 +1,8 @@
 <ion-header>
   <ion-navbar color="dark">
     <div class="header">
-      <img src="../../assets/icon.png" alt="">
-      <span class="base title">Astronomy Picture of the Day</span>
+      <img src="./assets/icon/icon.png" alt="">
+      <span [ngClass]="{'mobile': isMobile, 'desktop': isDesktop}">Astronomy Picture of the Day</span>
     </div>
 
   </ion-navbar>
@@ -12,9 +12,16 @@
 <ion-content>
 
   <ion-card class="today_card">
-    <div class="today_image">
+    <div *ngIf="nasaData.type === 'unknown'" class="today_image">
+      <iframe [src]="imgUrl" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" [ngClass]="{'mobile': isMobile, 'desktop': isDesktop}">
+      </iframe>
+    </div>
+
+    <div *ngIf="nasaData.type === 'jpg'" class="today_image">
       <img [src]="imgUrl" [ngClass]="{'mobile': isMobile, 'desktop': isDesktop}" (click)="openImageView()" />
     </div>
+
+
     <div class="other_details">
       <p class="base date">{{ nasaData.date | date: 'mediumDate' }}</p>
       <div class="copyright_parent">
@@ -28,17 +35,7 @@
     </div>
   </ion-card>
 
-  <!-- <div *ngIf="nasaData.type === 'unknown'" class="not_supported">
-    <div class="content">
-      <p class="base">This format will be supported soon</p>
-      <button ion-button color="light" outline style="font-size: 12px;" (click)="openInNewTab(nasaData.url)">Go to APOD website</button>
-    </div>
-  </div>
 
-  <div *ngIf="nasaData.type === 'jpg'" class="today_image">
-
-  </div>
- -->
 
 
 

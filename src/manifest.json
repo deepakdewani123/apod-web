@@ -1,10 +1,10 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "NASA APOD",
+  "short_name": "APOD",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
-    "src": "assets/icon/favicon.ico",
+    "src": "assets/imgs/icon.png",
     "sizes": "512x512",
     "type": "image/png"
   }],

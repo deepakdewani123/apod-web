@@ -8,12 +8,8 @@ page-today {
   ion-header {
     ion-navbar {
       .header {
-        display: inline;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
+        width: fit-content;
+        margin: 0 auto;
         img {
           width: 30px;
           height: 30px;
@@ -21,12 +17,18 @@ page-today {
           border: 0;
           vertical-align: middle;
           margin-right: 5px; // padding: 5px;
-        }
-        .title {
+        } // .title {
+        // }
+        span {
           vertical-align: middle;
-          font-size: 30px;
           color: white;
           text-align: center;
+        }
+        span.mobile {
+          font-size: 15px;
+        }
+        span.desktop {
+          font-size: 30px;
         }
       }
     }
@@ -40,15 +42,28 @@ page-today {
       .today_image {
         width: 100%;
         background: #181818;
+        iframe {
+          margin: auto;
+          display: block;
+          border: 0; // max-height: 300px;
+        }
         img {
           margin: auto;
           border: 0; // max-height: 300px;
         }
-        .mobile {
+        img.mobile {
           width: 100%;
         }
-        .desktop {
+        img.desktop {
           width: 80%;
+        }
+        iframe.mobile {
+          width: 100%;
+          height: 200px;
+        }
+        iframe.desktop {
+          width: 80%;
+          height: 400px;
         }
       }
       .other_details {

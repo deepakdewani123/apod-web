@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Storage } from "@ionic/storage";
+import { DomSanitizer } from '@angular/platform-browser';
 
 import {
   IonicPage,
@@ -8,8 +9,6 @@ import {
   Platform
 } from "ionic-angular";
 
-import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
-import { File } from '@ionic-native/file';
 import * as moment from "moment";
 
 import { ImageViewPage } from "./../image-view/image-view";
@@ -27,7 +26,7 @@ export class TodayPage {
   platformName: string;
   savedImageUrl: string;
   date: string;
-  imgUrl: string;
+  imgUrl: any;
   imageShareUrl: string;
   isMobile: boolean;
   isDesktop: boolean;
@@ -38,8 +37,7 @@ export class TodayPage {
     private modalCtrl: ModalController,
     private platform: Platform,
     private storage: Storage,
-    private transfer: FileTransfer,
-    private file: File
+    private sanitizer: DomSanitizer
   ) {
     this.nasaData = new NasaData();
     this.platformName = this.platform.is("ios") === true ? "ios" : "android";
@@ -54,9 +52,6 @@ export class TodayPage {
   ionViewDidLoad() {
     this.loadData();
 
-  }
-
-  ionViewWillEnter() {
   }
 
   loadData() {
@@ -100,29 +95,20 @@ export class TodayPage {
           type: result.url.match(/youtube/) ? "unknown" : "jpg"
         });
 
-        this.imgUrl = result.url;
-        this.storage.set("todayData", this.nasaData);
-        // if (this.nasaData.type === "jpg") {
-        //   this.download(result.url, this.nasaData.fileName);
-        // }
+        if (this.nasaData.type === "jpg") {
+          this.imgUrl = result.url;
+        } else {
+          this.imgUrl = this.sanitizer.bypassSecurityTrustResourceUrl(result.url);
+        }
 
+        console.log(this.imgUrl);
+        this.storage.set("todayData", this.nasaData);
       },
       error => {
         console.log(error);
       }
     );
 
-  }
-
-  extension(url) {
-    // Remove everything to the last slash in URL
-    url = url.substr(1 + url.lastIndexOf("/"));
-
-    // Break URL at ? and take first part (file name, extension)
-    url = url.split(".")[0];
-
-    // Now we have only extension
-    return url;
   }
 
 
@@ -142,37 +128,10 @@ export class TodayPage {
     modal.present();
   }
 
-
-  openInNewTab(url: string) {
-
-  }
   private createFileName(date: string) {
     let newFileName = date + ".jpg";
     return newFileName;
   }
 
-  private download(url: string, fileName: string) {
-    console.log('download');
-    console.log(this.file.dataDirectory);
-    const fileTransfer: FileTransferObject = this.transfer.create();
-    fileTransfer.download(url, this.file + fileName).then(
-      entry => {
-
-        this.nasaData.fileName = fileName;
-        this.nasaData.isImageDownloaded = true;
-        // this.imgUrl = normalizeURL(entry.toURL());
-
-        console.log(entry.toURL());
-        this.storage.set("todayData", this.nasaData);
-      },
-      error => {
-        // handle error
-        console.log('error');
-        this.dataService.presentToast(
-          "The image couldn't be downloaded. Please try again."
-        );
-      }
-    );
-  }
 
 }
