@@ -1,0 +1,123 @@
+page-today {
+  * {
+    font-family: 'Georgia', sans-serif;
+  }
+  .scroll-content {
+    background: #181818;
+  }
+  ion-header {
+    ion-navbar {
+      .header {
+        display: inline;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 6px;
+          border: 0;
+          vertical-align: middle;
+          margin-right: 5px; // padding: 5px;
+        }
+        .title {
+          vertical-align: middle;
+          font-size: 30px;
+          color: white;
+          text-align: center;
+        }
+      }
+    }
+  }
+  ion-content {
+    p,
+    h1 {
+      margin: 0px !important;
+    }
+    .today_card {
+      .today_image {
+        width: 100%;
+        background: #181818;
+        img {
+          margin: auto;
+          border: 0; // max-height: 300px;
+        }
+        .mobile {
+          width: 100%;
+        }
+        .desktop {
+          width: 80%;
+        }
+      }
+      .other_details {
+        background: #181818;
+      }
+    }
+    .not_supported {
+      text-align: center;
+      width: 100%;
+      height: 200px;
+      border: 1px solid rgba(255, 255, 255, 0.301); // display: block;
+      position: relative;
+      .content {
+        // centering item hor & ver
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+    }
+    .image_loading_div {
+      width: 100%;
+      height: 250px;
+      background: rgba(0, 0, 0, 0.363);
+      border: 1px solid rgba(255, 255, 255, 0.301);
+      text-align: center;
+      position: relative;
+      .spinner_div {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      ion-spinner * {
+        stroke: #fff;
+        width: 28px;
+        height: 28px;
+      }
+    }
+    .copyright_parent {
+      display: inline-block;
+      float: right;
+      .copyright {
+        font-size: 8px;
+        display: inline-block;
+        padding: 3px 5px;
+        vertical-align: middle;
+      }
+    }
+    .base {
+      color: white;
+    }
+    .title {
+      padding: 10px;
+    }
+    .explanation {
+      padding: 10px;
+    }
+    .date {
+      // width: 70px;
+      font-size: 10px;
+      padding: 0px 5px;
+      display: inline-block;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<ion-header no-border>
+
+  <ion-navbar transparent>
+    <ion-buttons start>
+      <button (click)="dismiss()" ion-button icon-only>
+        <ion-icon color="light" name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-bounce fullscreen="true">
+  <div class="view_image">
+    <img [src]="imgUrl" />
+  </div>
+</ion-content>
